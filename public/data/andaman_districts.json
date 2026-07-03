@@ -1,0 +1,44 @@
+[
+  {
+    "id": "north_middle_andaman",
+    "name": "North and Middle Andaman",
+    "hq": "Mayabunder",
+    "constituenciesCount": 3,
+    "population": 68954,
+    "complaintsMajor": 5,
+    "complaintsMinor": 2,
+    "candidates": -10,
+    "wardsCount": 45,
+    "visitedCount": 6,
+    "notVisitedCount": 39,
+    "engaged": 383
+  },
+  {
+    "id": "south_andaman",
+    "name": "South Andaman",
+    "hq": "Port Blair",
+    "constituenciesCount": 2,
+    "population": 211611,
+    "complaintsMajor": 19,
+    "complaintsMinor": 18,
+    "candidates": 12,
+    "wardsCount": 30,
+    "visitedCount": 23,
+    "notVisitedCount": 7,
+    "engaged": 3480
+  },
+  {
+    "id": "nicobar",
+    "name": "Nicobar",
+    "hq": "Car Nicobar",
+    "constituenciesCount": 3,
+    "population": 37531,
+    "complaintsMajor": 13,
+    "complaintsMinor": 9,
+    "candidates": 10,
+    "wardsCount": 45,
+    "visitedCount": 25,
+    "notVisitedCount": 20,
+    "engaged": 864
+  }
+]

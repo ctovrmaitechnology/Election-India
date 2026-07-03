@@ -1,0 +1,62 @@
+[
+  {
+    "id": "north_sikkim",
+    "name": "North Sikkim",
+    "hq": "North Sikkim",
+    "constituenciesCount": 8,
+    "stateId": "IN-SK",
+    "population": 148094,
+    "complaintsMajor": 10,
+    "complaintsMinor": 7,
+    "candidates": 7,
+    "wardsCount": 120,
+    "visitedCount": 97,
+    "notVisitedCount": 23,
+    "engaged": 3257
+  },
+  {
+    "id": "west_sikkim",
+    "name": "West Sikkim",
+    "hq": "Gyalshing",
+    "constituenciesCount": 8,
+    "stateId": "IN-SK",
+    "population": 122132,
+    "complaintsMajor": -7,
+    "complaintsMinor": -2,
+    "candidates": -6,
+    "wardsCount": 120,
+    "visitedCount": 34,
+    "notVisitedCount": 86,
+    "engaged": 367
+  },
+  {
+    "id": "south_sikkim",
+    "name": "South Sikkim",
+    "hq": "South Sikkim",
+    "constituenciesCount": 8,
+    "stateId": "IN-SK",
+    "population": 157476,
+    "complaintsMajor": 29,
+    "complaintsMinor": 19,
+    "candidates": 17,
+    "wardsCount": 120,
+    "visitedCount": 57,
+    "notVisitedCount": 63,
+    "engaged": 2647
+  },
+  {
+    "id": "east_sikkim",
+    "name": "East Sikkim",
+    "hq": "Gangtok",
+    "constituenciesCount": 8,
+    "stateId": "IN-SK",
+    "population": 77380,
+    "complaintsMajor": -10,
+    "complaintsMinor": -2,
+    "candidates": 2,
+    "wardsCount": 120,
+    "visitedCount": 2,
+    "notVisitedCount": 118,
+    "engaged": 1
+  }
+]

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Yanam (Top Right) -->
+  <path id="yanam" d="M 160 40 A 15 15 0 1 1 160 39.99 Z" />
+  <!-- Mahe (Left/West Coast) -->
+  <path id="mahe" d="M 40 120 A 15 15 0 1 1 40 119.99 Z" />
+  <!-- Puducherry (East Coast - Middle) -->
+  <path id="puducherry" d="M 120 100 A 25 25 0 1 1 120 99.99 Z" />
+  <!-- Karaikal (East Coast - South) -->
+  <path id="karaikal" d="M 125 150 A 20 20 0 1 1 125 149.99 Z" />
+</svg>

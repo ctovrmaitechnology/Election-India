@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dadra_nagar_haveli",
+    "name": "Dadra and Nagar Haveli",
+    "hq": "Silvassa",
+    "constituenciesCount": 1,
+    "population": 143234,
+    "complaintsMajor": 17,
+    "complaintsMinor": 6,
+    "candidates": -7,
+    "wardsCount": 15,
+    "visitedCount": 7,
+    "notVisitedCount": 8,
+    "engaged": 931
+  },
+  {
+    "id": "daman",
+    "name": "Daman",
+    "hq": "Daman",
+    "constituenciesCount": 1,
+    "population": 162285,
+    "complaintsMajor": 24,
+    "complaintsMinor": 18,
+    "candidates": 10,
+    "wardsCount": 15,
+    "visitedCount": 7,
+    "notVisitedCount": 8,
+    "engaged": 4559
+  },
+  {
+    "id": "diu",
+    "name": "Diu",
+    "hq": "Diu",
+    "constituenciesCount": 1,
+    "population": 48704,
+    "complaintsMajor": 6,
+    "complaintsMinor": 4,
+    "candidates": 15,
+    "wardsCount": 15,
+    "visitedCount": 8,
+    "notVisitedCount": 7,
+    "engaged": 723
+  }
+]

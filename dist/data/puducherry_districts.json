@@ -1,0 +1,58 @@
+[
+  {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "hq": "Puducherry City",
+    "constituenciesCount": 4,
+    "wardsCount": 40,
+    "population": 89870,
+    "complaintsMajor": 97,
+    "complaintsMinor": 91,
+    "candidates": 4,
+    "visitedCount": 67,
+    "notVisitedCount": 40,
+    "engaged": 1886
+  },
+  {
+    "id": "karaikal",
+    "name": "Karaikal",
+    "hq": "Karaikal City",
+    "constituenciesCount": 3,
+    "wardsCount": 30,
+    "population": 335070,
+    "complaintsMajor": 69,
+    "complaintsMinor": 27,
+    "candidates": 4,
+    "visitedCount": 36,
+    "notVisitedCount": 19,
+    "engaged": 1706
+  },
+  {
+    "id": "mahe",
+    "name": "Mahe",
+    "hq": "Mahe City",
+    "constituenciesCount": 3,
+    "wardsCount": 30,
+    "population": 523165,
+    "complaintsMajor": 25,
+    "complaintsMinor": 88,
+    "candidates": 5,
+    "visitedCount": 37,
+    "notVisitedCount": 24,
+    "engaged": 3655
+  },
+  {
+    "id": "yanam",
+    "name": "Yanam",
+    "hq": "Yanam City",
+    "constituenciesCount": 1,
+    "wardsCount": 10,
+    "population": 525665,
+    "complaintsMajor": 86,
+    "complaintsMinor": 103,
+    "candidates": 4,
+    "visitedCount": 41,
+    "notVisitedCount": 25,
+    "engaged": 2643
+  }
+]

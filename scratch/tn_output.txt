@@ -1,0 +1,382 @@
+﻿// ===== TAMIL NADU 2026 OFFICIAL DATA =====
+
+  // TIRUVALLUR
+  'tiruvallur': [
+    { name: "Gummidipoondi", mla: "S.VIJAYAKUMAR", party: "TVK", wards: 16, major: 355, minor: 157, visited: false },
+    { name: "Ponneri (SC)", mla: "DR.RAVI.M.S", party: "TVK", wards: 16, major: 387, minor: 157, visited: false },
+    { name: "Tiruttani", mla: "G.HARI", party: "AIADMK", wards: 16, major: 349, minor: 168, visited: false },
+    { name: "Thiruvallur", mla: "DR. T. ARUNKUMAR", party: "TVK", wards: 16, major: 358, minor: 187, visited: false },
+    { name: "Poonamallee (SC)", mla: "PRAKASAM.R", party: "TVK", wards: 16, major: 406, minor: 207, visited: false },
+    { name: "Avadi", mla: "R.RAMESH KUMAR", party: "TVK", wards: 16, major: 185, minor: 138, visited: false },
+    { name: "Maduravoyal", mla: "RHEVANTH CHARAN", party: "TVK", wards: 16, major: 375, minor: 124, visited: false },
+    { name: "Ambattur", mla: "BALAMURAGAN.G", party: "TVK", wards: 16, major: 482, minor: 109, visited: false },
+    { name: "Madavaram", mla: "M.L.VIJAYAPRABHU", party: "TVK", wards: 16, major: 295, minor: 160, visited: false },
+    { name: "Thiruvottiyur", mla: "SENTHIL KUMAR. N", party: "TVK", wards: 16, major: 104, minor: 147, visited: false },
+  ],
+
+  // CHENNAI
+  'chennai': [
+    { name: "Dr.Radhakrishnan Nagar", mla: "N. MARIE WILSON", party: "TVK", wards: 16, major: 488, minor: 80, visited: false },
+    { name: "Perambur", mla: "C. JOSEPH VIJAY", party: "TVK", wards: 16, major: 118, minor: 163, visited: false },
+    { name: "Kolathur", mla: "V. S. BABU", party: "TVK", wards: 16, major: 407, minor: 188, visited: false },
+    { name: "Villivakkam", mla: "AADHAV ARJUNA", party: "TVK", wards: 16, major: 411, minor: 61, visited: false },
+    { name: "Thiru-Vi-Ka-Nagar (SC)", mla: "M. R. PALLAVI", party: "TVK", wards: 16, major: 379, minor: 206, visited: false },
+    { name: "Egmore (SC)", mla: "RAJMOHAN", party: "TVK", wards: 16, major: 576, minor: 227, visited: false },
+    { name: "Royapuram", mla: "K.V. VIJAY DAMU", party: "TVK", wards: 16, major: 389, minor: 246, visited: false },
+    { name: "Harbour", mla: "P.K SEKARBABU", party: "DMK", wards: 16, major: 480, minor: 101, visited: false },
+    { name: "Chepauk-Thiruvallikeni", mla: "UDHAYANIDHI STALIN", party: "DMK", wards: 16, major: 276, minor: 174, visited: false },
+    { name: "Thousand Lights", mla: "PRABHAKAR.J.C.D", party: "TVK", wards: 16, major: 470, minor: 57, visited: false },
+    { name: "Anna Nagar", mla: "V.K.RAMKUMAR", party: "TVK", wards: 16, major: 355, minor: 102, visited: false },
+    { name: "Virugampakkam", mla: "SABARINATHAN.R", party: "TVK", wards: 16, major: 583, minor: 201, visited: false },
+    { name: "Saidapet", mla: "ARUL PRAKASAM. M", party: "TVK", wards: 16, major: 256, minor: 170, visited: false },
+    { name: "Thiyagarayanagar", mla: "ANAND N", party: "TVK", wards: 16, major: 157, minor: 182, visited: false },
+    { name: "Mylapore", mla: "VENKATARAMANAN. P", party: "TVK", wards: 16, major: 433, minor: 60, visited: false },
+    { name: "Velachery", mla: "KUMAR. R", party: "TVK", wards: 16, major: 408, minor: 141, visited: false },
+  ],
+
+  // KANCHIPURAM
+  'kanchipuram': [
+    { name: "Shozhinganalur", mla: "ECR P SARAVANAN", party: "TVK", wards: 16, major: 131, minor: 244, visited: false },
+    { name: "Alandur", mla: "M.HARISH", party: "TVK", wards: 16, major: 501, minor: 99, visited: false },
+    { name: "Sriperumbudur (SC)", mla: "THENNARASU.K", party: "TVK", wards: 16, major: 175, minor: 209, visited: false },
+    { name: "Pallavaram", mla: "J.KAMATCHI", party: "TVK", wards: 16, major: 242, minor: 134, visited: false },
+    { name: "Tambaram", mla: "D.SARATHKUMAR", party: "TVK", wards: 16, major: 330, minor: 105, visited: false },
+    { name: "Chengalpattu", mla: "S. THIYAGARAJAN", party: "TVK", wards: 16, major: 202, minor: 194, visited: false },
+    { name: "Thiruporur", mla: "B.VIJAYARAJ", party: "TVK", wards: 16, major: 515, minor: 79, visited: false },
+    { name: "Cheyur (SC)", mla: "RAJASEKAR. E", party: "AIADMK", wards: 16, major: 229, minor: 216, visited: false },
+    { name: "Maduranthakam (SC)", mla: "MARAGATHAM KUMARAVEL.K", party: "AIADMK", wards: 16, major: 354, minor: 114, visited: false },
+    { name: "Uthiramerur", mla: "MUNIRATHINAM.J", party: "TVK", wards: 16, major: 153, minor: 200, visited: false },
+    { name: "Kancheepuram", mla: "R.V. RANJITHKUMAR", party: "TVK", wards: 16, major: 336, minor: 150, visited: false },
+  ],
+
+  // VELLORE
+  'vellore': [
+    { name: "Arakkonam (SC)", mla: "V. GANDHIRAJ", party: "TVK", wards: 16, major: 504, minor: 203, visited: false },
+    { name: "Sholingur", mla: "G.KAPIL", party: "TVK", wards: 16, major: 507, minor: 185, visited: false },
+    { name: "Katpadi", mla: "DR M SUDHAKAR", party: "TVK", wards: 16, major: 249, minor: 217, visited: false },
+    { name: "Ranipet", mla: "THAHIRA", party: "TVK", wards: 16, major: 317, minor: 151, visited: false },
+    { name: "Arcot", mla: "S.M.SUKUMAR", party: "AIADMK", wards: 16, major: 596, minor: 91, visited: false },
+    { name: "Vellore", mla: "M.M.VINOTH KANNAN", party: "TVK", wards: 16, major: 118, minor: 54, visited: false },
+    { name: "Anaikattu", mla: "D.VELAZHAGAN", party: "AIADMK", wards: 16, major: 440, minor: 75, visited: false },
+    { name: "Kilvaithinankuppam (SC)", mla: "THENRAL KUMAR. E", party: "TVK", wards: 16, major: 485, minor: 165, visited: false },
+    { name: "Gudiyatham (SC)", mla: "K.SINDU", party: "TVK", wards: 16, major: 420, minor: 157, visited: false },
+    { name: "Vaniyambadi", mla: "SYED FAROOQ BASHA SSB", party: "IUML", wards: 16, major: 598, minor: 123, visited: false },
+    { name: "Ambur", mla: "VILWANATHAN. A.C", party: "DMK", wards: 16, major: 376, minor: 66, visited: false },
+    { name: "Jolarpet", mla: "VEERAMANI K.C", party: "AIADMK", wards: 16, major: 265, minor: 140, visited: false },
+  ],
+
+  // TIRUPATTUR
+  'tirupattur': [
+    { name: "Tirupattur", mla: "DR THIRUPATHI. N", party: "TVK", wards: 16, major: 318, minor: 215, visited: false },
+  ],
+
+  // KRISHNAGIRI
+  'krishnagiri': [
+    { name: "Uthangarai (SC)", mla: "N ELAIYARAJA", party: "TVK", wards: 16, major: 479, minor: 108, visited: false },
+    { name: "Bargur (SC)", mla: "E.C. GOVINDARASAN", party: "AIADMK", wards: 16, major: 462, minor: 151, visited: false },
+    { name: "Krishnagiri", mla: "MUKUNDHAN.P", party: "TVK", wards: 16, major: 366, minor: 67, visited: false },
+    { name: "Veppanahalli", mla: "SRINIVASAN.P.S", party: "DMK", wards: 16, major: 316, minor: 96, visited: false },
+    { name: "Hosur", mla: "BALAKRISHNAREDDY. P", party: "AIADMK", wards: 16, major: 367, minor: 78, visited: false },
+    { name: "Thalli", mla: "RAMACHANDRAN. T", party: "CPI", wards: 16, major: 242, minor: 198, visited: false },
+    { name: "Palacodu", mla: "ANBALAGAN. K.P", party: "AIADMK", wards: 16, major: 294, minor: 185, visited: false },
+  ],
+
+  // DHARMAPURI
+  'dharmapuri': [
+    { name: "Pennagaram", mla: "GAJENDRAN. S", party: "TVK", wards: 16, major: 397, minor: 102, visited: false },
+    { name: "Dharmapuri", mla: "SOWMIYA ANBUMANI", party: "PMK", wards: 16, major: 186, minor: 71, visited: false },
+    { name: "Pappireddipatii", mla: "MARAGATHAM VETRIVEL", party: "AIADMK", wards: 16, major: 448, minor: 116, visited: false },
+    { name: "Harur (SC)", mla: "SAMPATHKUMAR. V", party: "TVK", wards: 16, major: 520, minor: 204, visited: false },
+  ],
+
+  // TIRUVANNAMALAI
+  'tiruvannamalai': [
+    { name: "Chengam (SC)", mla: "S.VELU", party: "AIADMK", wards: 16, major: 514, minor: 229, visited: false },
+    { name: "Tiruvannamalai", mla: "VELU. E.V", party: "DMK", wards: 16, major: 268, minor: 193, visited: false },
+    { name: "Kilpennathur", mla: "RAMACHANDRAN.S", party: "AIADMK", wards: 16, major: 492, minor: 234, visited: false },
+    { name: "Kalasapakkam", mla: "AGRI KRISHNAMURTHY. S S", party: "AIADMK", wards: 16, major: 563, minor: 160, visited: false },
+    { name: "Polur", mla: "ABISHEK. R", party: "AIADMK", wards: 16, major: 216, minor: 220, visited: false },
+    { name: "Arani", mla: "JAYASUDHA. L", party: "AIADMK", wards: 16, major: 243, minor: 80, visited: false },
+    { name: "Cheyyar", mla: "MUKKUR N. SUBRAMANIAN", party: "AIADMK", wards: 16, major: 233, minor: 68, visited: false },
+    { name: "Vandavasi (SC)", mla: "AMBETHKUMAR. S", party: "DMK", wards: 16, major: 384, minor: 201, visited: false },
+  ],
+
+  // VILUPPURAM
+  'viluppuram': [
+    { name: "Gingee", mla: "GANESHKUMAR. A", party: "PMK", wards: 16, major: 164, minor: 73, visited: false },
+    { name: "Mailam", mla: "SHANMUGAM C VE", party: "AIADMK", wards: 16, major: 313, minor: 152, visited: false },
+    { name: "Tindivanam (SC)", mla: "VANNI ARASU", party: "VCK", wards: 16, major: 176, minor: 135, visited: false },
+    { name: "Vanur (SC)", mla: "GOWTHAM D", party: "DMK", wards: 16, major: 218, minor: 134, visited: false },
+    { name: "Viluppuram", mla: "LAKSHMANAN R", party: "DMK", wards: 16, major: 184, minor: 119, visited: false },
+    { name: "Vikravandi", mla: "SIVAKUMAR C", party: "PMK", wards: 16, major: 496, minor: 51, visited: false },
+    { name: "Tirukkoyilur", mla: "PALANISAMY S", party: "AIADMK", wards: 16, major: 111, minor: 182, visited: false },
+    { name: "Ulundurpettai", mla: "VASANTHAVEL G R", party: "DMK", wards: 16, major: 591, minor: 228, visited: false },
+    { name: "Rishivandiyam", mla: "KARTHIKEYAN K", party: "DMK", wards: 16, major: 480, minor: 80, visited: false },
+    { name: "Sankarapuram", mla: "RAKESH R", party: "AIADMK", wards: 16, major: 357, minor: 176, visited: false },
+    { name: "Kallakurichi (SC)", mla: "ARUL VIGNESH C", party: "TVK", wards: 16, major: 238, minor: 51, visited: false },
+  ],
+
+  // SALEM
+  'salem': [
+    { name: "Gangavalli (SC)", mla: "NALLATHAMBI. A", party: "AIADMK", wards: 16, major: 415, minor: 107, visited: false },
+    { name: "Attur (SC)", mla: "JAYASANKARAN. A.P", party: "AIADMK", wards: 16, major: 238, minor: 162, visited: false },
+    { name: "Yercaud (ST)", mla: "USHARANI. P", party: "AIADMK", wards: 16, major: 221, minor: 231, visited: false },
+    { name: "Omalur", mla: "MANI. R", party: "AIADMK", wards: 16, major: 355, minor: 135, visited: false },
+    { name: "Mettur", mla: "VENKATACHALAM. G", party: "AIADMK", wards: 16, major: 412, minor: 140, visited: false },
+    { name: "Edappadi", mla: "EDAPPADI PALANISWAMI. K", party: "AIADMK", wards: 16, major: 201, minor: 236, visited: false },
+    { name: "Sankari", mla: "VETRIVEL. S", party: "AIADMK", wards: 16, major: 148, minor: 169, visited: false },
+    { name: "Salem (West)", mla: "LAKSHMANAN.S", party: "TVK", wards: 16, major: 562, minor: 243, visited: false },
+    { name: "Salem (North)", mla: "SIVAKUMAR. K", party: "TVK", wards: 16, major: 598, minor: 85, visited: false },
+    { name: "Salem (South)", mla: "VIJAY TAMILAN PARTHIBAN. A", party: "TVK", wards: 16, major: 352, minor: 227, visited: false },
+    { name: "Veerapandi", mla: "PALANIVEL. M.S", party: "TVK", wards: 16, major: 341, minor: 244, visited: false },
+  ],
+
+  // NAMAKKAL
+  'namakkal': [
+    { name: "Rasipuram (SC)", mla: "LOGESH TAMILSELVAN D", party: "TVK", wards: 16, major: 507, minor: 220, visited: false },
+    { name: "Senthamangalam (ST)", mla: "P CHANDRASEKAR", party: "TVK", wards: 16, major: 336, minor: 102, visited: false },
+    { name: "Namakkal", mla: "DILIP C S", party: "TVK", wards: 16, major: 450, minor: 150, visited: false },
+    { name: "Paramathi-Velur", mla: "SEKAR S", party: "AIADMK", wards: 16, major: 221, minor: 160, visited: false },
+    { name: "Tiruchengodu", mla: "ARUNRAJ K G", party: "TVK", wards: 16, major: 163, minor: 181, visited: false },
+    { name: "Kumarapalayam", mla: "C.VIJAYALAKSHMI", party: "TVK", wards: 16, major: 449, minor: 156, visited: false },
+  ],
+
+  // ERODE
+  'erode': [
+    { name: "Erode (East)", mla: "M.VIJAY BALAJI", party: "TVK", wards: 16, major: 441, minor: 133, visited: false },
+    { name: "Erode (West)", mla: "ANANTH MOGHAN K.K", party: "TVK", wards: 16, major: 340, minor: 217, visited: false },
+    { name: "Modakkurichi", mla: "D.SHANMUGAN", party: "TVK", wards: 16, major: 327, minor: 92, visited: false },
+    { name: "Perundurai", mla: "JAYAKUMAR. S", party: "AIADMK", wards: 16, major: 348, minor: 166, visited: false },
+    { name: "Bhavani", mla: "KARUPPANAN. K.C", party: "AIADMK", wards: 16, major: 322, minor: 178, visited: false },
+    { name: "Anthiyur", mla: "HARIBASKAR.P", party: "AIADMK", wards: 16, major: 452, minor: 92, visited: false },
+    { name: "Gobichettipalayam", mla: "SENGOTTAIYAN.K.A", party: "AIADMK", wards: 16, major: 597, minor: 126, visited: false },
+    { name: "Bhavanisagar (SC)", mla: "V.P TAMILSELVI", party: "AIADMK", wards: 16, major: 475, minor: 242, visited: false },
+  ],
+
+  // TIRUPPUR
+  'tiruppur': [
+    { name: "Dharapuram (SC)", mla: "SATHYABAMA.P", party: "AIADMK", wards: 16, major: 153, minor: 53, visited: false },
+    { name: "Kangayam", mla: "NSN NATARAJ", party: "TVK", wards: 16, major: 141, minor: 217, visited: false },
+    { name: "Tiruppur (North)", mla: "V.SATHYABAMA", party: "TVK", wards: 16, major: 271, minor: 202, visited: false },
+    { name: "Tiruppur (South)", mla: "BALAMURUGAN. S", party: "TVK", wards: 16, major: 362, minor: 238, visited: false },
+    { name: "Palladam", mla: "K.RAMKUMAR", party: "TVK", wards: 16, major: 105, minor: 235, visited: false },
+    { name: "Udumalaipettai", mla: "JAYAKUMAR M.", party: "DMK", wards: 16, major: 245, minor: 212, visited: false },
+    { name: "Madathukulam", mla: "R JAYARAMAKRISHNAN", party: "TVK", wards: 16, major: 588, minor: 246, visited: false },
+  ],
+
+  // NILGIRIS
+  'nilgiris': [
+    { name: "Udhagamandalam", mla: "BHOJARAJAN.M", party: "BJP", wards: 16, major: 524, minor: 152, visited: false },
+    { name: "Gudalur (SC)", mla: "DHRAVIDAMANI.M", party: "DMK", wards: 16, major: 531, minor: 130, visited: false },
+    { name: "Coonoor", mla: "M. RAJU", party: "DMK", wards: 16, major: 157, minor: 84, visited: false },
+  ],
+
+  // COIMBATORE
+  'coimbatore': [
+    { name: "Mettupalayam", mla: "SUNILANAND", party: "TVK", wards: 16, major: 477, minor: 92, visited: false },
+    { name: "Avanashi (SC)", mla: "KAMALI.S", party: "TVK", wards: 16, major: 240, minor: 212, visited: false },
+    { name: "Sulur", mla: "NM.SUKUMAR", party: "TVK", wards: 16, major: 380, minor: 104, visited: false },
+    { name: "Kavundampalayam", mla: "KANIMOZHI SANTHOSH", party: "TVK", wards: 16, major: 317, minor: 158, visited: false },
+    { name: "Coimbatore (North)", mla: "V. SAMPATHKUMAR", party: "TVK", wards: 16, major: 478, minor: 61, visited: false },
+    { name: "Thondamuthur", mla: "S.P VELIDA MUNIAMMAL", party: "AIADMK", wards: 16, major: 287, minor: 90, visited: false },
+    { name: "Coimbatore (South)", mla: "V SENTHILBALAJI", party: "DMK", wards: 16, major: 240, minor: 194, visited: false },
+    { name: "Singanallur", mla: "K.S.SRI GIRI PRASATH", party: "AIADMK", wards: 16, major: 259, minor: 146, visited: false },
+    { name: "Kinathukadavu", mla: "VIGNESH K", party: "TVK", wards: 16, major: 115, minor: 233, visited: false },
+    { name: "Pollachi", mla: "K. NITHIYANANDHAN", party: "DMK", wards: 16, major: 129, minor: 188, visited: false },
+    { name: "Valparai (SC)", mla: "KUTTY (ALIAS) SUDHAKAR. A", party: "TVK", wards: 16, major: 341, minor: 107, visited: false },
+  ],
+
+  // DINDIGUL
+  'dindigul': [
+    { name: "Palani", mla: "RAVIMOHARAN. K", party: "AIADMK", wards: 16, major: 321, minor: 83, visited: false },
+    { name: "Oddanchatram", mla: "SAKKARAPANI. R", party: "DMK", wards: 16, major: 306, minor: 100, visited: false },
+    { name: "Athoor", mla: "I. PERIASAMY", party: "TVK", wards: 16, major: 443, minor: 159, visited: false },
+    { name: "Nilakkottai (SC)", mla: "AYYANAR.R", party: "TVK", wards: 16, major: 468, minor: 99, visited: false },
+    { name: "Natham", mla: "NATHAM VISWANATHAN R", party: "TVK", wards: 16, major: 115, minor: 61, visited: false },
+    { name: "Dindigul", mla: "SENTHILKUMAR. I.P", party: "DMK", wards: 16, major: 320, minor: 51, visited: false },
+    { name: "Vedasandur", mla: "SAMINATHAN. T", party: "TVK", wards: 16, major: 137, minor: 111, visited: false },
+  ],
+
+  // KARUR
+  'karur': [
+    { name: "Aravakurichi", mla: "ELANGO. R", party: "DMK", wards: 16, major: 185, minor: 135, visited: false },
+    { name: "Karur", mla: "M.R. VIJAYABHASKAR", party: "AIADMK", wards: 16, major: 408, minor: 190, visited: false },
+    { name: "Krishnarayapuram (SC)", mla: "SATHYA. M", party: "TVK", wards: 16, major: 154, minor: 234, visited: false },
+    { name: "Kulithalai", mla: "SURIYANUR. A. CHANDRAN", party: "DMK", wards: 16, major: 531, minor: 217, visited: false },
+  ],
+
+  // TIRUCHIRAPPALLI
+  'tiruchirappalli': [
+    { name: "Manapparai", mla: "R. KATHIRAVAN", party: "TVK", wards: 16, major: 456, minor: 164, visited: false },
+    { name: "Srirangam", mla: "RAMESH", party: "TVK", wards: 16, major: 586, minor: 243, visited: false },
+    { name: "Tiruchirappalli (West)", mla: "K.N.NEHRU", party: "TVK", wards: 16, major: 517, minor: 76, visited: false },
+    { name: "Tiruchirappalli (East)", mla: "C. JOSEPH VIJAY", party: "TVK", wards: 16, major: 111, minor: 187, visited: false },
+    { name: "Thiruverumbur", mla: "VIJAYAKUMAR (A) NAVALPATTU S. VUI", party: "TVK", wards: 16, major: 372, minor: 87, visited: false },
+    { name: "Lalgudi", mla: "LEEMAROSE MARTIN", party: "AIADMK", wards: 16, major: 581, minor: 179, visited: false },
+    { name: "Manachanallur", mla: "KATHIRAVAN. S", party: "DMK", wards: 16, major: 417, minor: 62, visited: false },
+    { name: "Musiri", mla: "M.VIGNESH", party: "TVK", wards: 16, major: 412, minor: 69, visited: false },
+    { name: "Thuraiyur (SC)", mla: "RAVISANKAR M.", party: "TVK", wards: 16, major: 553, minor: 60, visited: false },
+  ],
+
+  // PERAMBALUR
+  'perambalur': [
+    { name: "Perambalur (SC)", mla: "SIVAKUMAR. K", party: "TVK", wards: 16, major: 259, minor: 88, visited: false },
+    { name: "Kunnam", mla: "ANNADURAI K", party: "AIADMK", wards: 16, major: 526, minor: 152, visited: false },
+  ],
+
+  // ARIYALUR
+  'ariyalur': [
+    { name: "Ariyalur", mla: "RAJENDRAN S", party: "AIADMK", wards: 16, major: 162, minor: 201, visited: false },
+    { name: "Jayankondam", mla: "VAITHILINGAM G.", party: "PMK", wards: 16, major: 249, minor: 164, visited: false },
+  ],
+
+  // CUDDALORE
+  'cuddalore': [
+    { name: "Tittakudi (SC)", mla: "GANESAN C.V", party: "DMK", wards: 16, major: 161, minor: 216, visited: false },
+    { name: "Vriddhachalam", mla: "PREMALLATHA VIJAYAKANT", party: "Desiya Murpokku", wards: 16, major: 266, minor: 89, visited: false },
+    { name: "Neyveli", mla: "RAJENDRAN.R", party: "AIADMK", wards: 16, major: 440, minor: 210, visited: false },
+    { name: "Panruti", mla: "MOHAN. K", party: "AIADMK", wards: 16, major: 235, minor: 176, visited: false },
+    { name: "Cuddalore", mla: "B.RAJKUMAR", party: "TVK", wards: 16, major: 572, minor: 91, visited: false },
+    { name: "Kurinjipadi", mla: "M.R.K.PANNEERSELVAM", party: "DMK", wards: 16, major: 197, minor: 134, visited: false },
+    { name: "Bhuvanagiri", mla: "ARUNMOZHITHEVAN. A", party: "AIADMK", wards: 16, major: 224, minor: 236, visited: false },
+    { name: "Chidambaram", mla: "THAMMUN ANSARI. M", party: "TVK", wards: 16, major: 125, minor: 236, visited: false },
+    { name: "Kattumannarkol (SC)", mla: "L.E. JOTHIMANI", party: "VCK", wards: 16, major: 501, minor: 170, visited: false },
+  ],
+
+  // NAGAPATTINAM
+  'nagapattinam': [
+    { name: "Sirkali (SC)", mla: "SENTHILSELVAN.R", party: "TVK", wards: 16, major: 265, minor: 217, visited: false },
+    { name: "Mayiladuthurai", mla: "JAMAL MOHAMED YOUNOOS. Y.N", party: "INC", wards: 16, major: 529, minor: 114, visited: false },
+    { name: "Poompuhar", mla: "NIVEDHA M MURUGAN", party: "TVK", wards: 16, major: 194, minor: 221, visited: false },
+    { name: "Nagapattinam", mla: "M.H.JAWAHIRULLAH", party: "DMK", wards: 16, major: 121, minor: 128, visited: false },
+    { name: "Kilvelur (SC)", mla: "LATHA. T", party: "CPI(M)", wards: 16, major: 311, minor: 125, visited: false },
+    { name: "Vedaranyam", mla: "MANIAN. O.S", party: "AIADMK", wards: 16, major: 209, minor: 182, visited: false },
+  ],
+
+  // THIRUVARUR
+  'thiruvarur': [
+    { name: "Thiruthuraipoondi (SC)", mla: "MARIMUTHU K", party: "CPI", wards: 16, major: 540, minor: 176, visited: false },
+    { name: "Mannargudi", mla: "KAMARAJ. S", party: "AMMK", wards: 16, major: 544, minor: 154, visited: false },
+    { name: "Thiruvarur", mla: "KALAIVANAN POONDI K", party: "DMK", wards: 16, major: 583, minor: 243, visited: false },
+    { name: "Nannilam", mla: "KAMARAJ. R", party: "AIADMK", wards: 16, major: 579, minor: 227, visited: false },
+  ],
+
+  // TANJAVUR
+  'tanjavur': [
+    { name: "Thiruvidaimarudur (SC)", mla: "GOVI.CHEZHIAAN", party: "DMK", wards: 16, major: 455, minor: 88, visited: false },
+    { name: "Kumbakonam", mla: "VINOTH", party: "TVK", wards: 16, major: 256, minor: 209, visited: false },
+    { name: "Papanasam", mla: "A.M. SHAHJAHAN", party: "IUML", wards: 16, major: 167, minor: 72, visited: false },
+    { name: "Thiruvaiyaru", mla: "DURAI. CHANDRASEKARAN", party: "DMK", wards: 16, major: 454, minor: 82, visited: false },
+    { name: "Thanjavur", mla: "R. VIJAYSARAVANAN", party: "TVK", wards: 16, major: 172, minor: 163, visited: false },
+    { name: "Orathandu", mla: "R. VAITHILINGAM", party: "TVK", wards: 16, major: 482, minor: 143, visited: false },
+    { name: "Pattukkotai", mla: "ANNADURAI K", party: "AIADMK", wards: 16, major: 472, minor: 219, visited: false },
+    { name: "Peravurani", mla: "ASHOKKUMAR. N", party: "DMK", wards: 16, major: 202, minor: 113, visited: false },
+  ],
+
+  // PUDUKKOTTAI
+  'pudukkottai': [
+    { name: "Gandarvakottai (SC)", mla: "N. SUBRAMANIAN", party: "TVK", wards: 16, major: 125, minor: 202, visited: false },
+    { name: "Viralimalai", mla: "VIJAYABASKAR. C", party: "AIADMK", wards: 16, major: 140, minor: 94, visited: false },
+    { name: "Pudukkottai", mla: "V. MUTHURAJA", party: "TVK", wards: 16, major: 194, minor: 55, visited: false },
+    { name: "Thirumayam", mla: "REGUPATHY.S", party: "DMK", wards: 16, major: 366, minor: 65, visited: false },
+    { name: "Alangudi", mla: "SIVA.V. MEYYANATHAN", party: "TVK", wards: 16, major: 295, minor: 151, visited: false },
+    { name: "Aranthangi", mla: "MOHAMED FARVAS. J", party: "TVK", wards: 16, major: 177, minor: 154, visited: false },
+  ],
+
+  // SIVAGANGAI
+  'sivagangai': [
+    { name: "Karakudi", mla: "DR.PRABHU. TK", party: "TVK", wards: 16, major: 162, minor: 167, visited: false },
+    { name: "Tiruppattur", mla: "SEENIVASA SETHUPATHY. R", party: "TVK", wards: 16, major: 589, minor: 158, visited: false },
+    { name: "Sivaganga", mla: "KULANTHAI RANI A", party: "TVK", wards: 16, major: 516, minor: 50, visited: false },
+    { name: "Manamadurai (SC)", mla: "ELANGOVAN.D", party: "TVK", wards: 16, major: 332, minor: 182, visited: false },
+  ],
+
+  // MADURAI
+  'madurai': [
+    { name: "Melur", mla: "P.VISWANATHAN", party: "INC", wards: 16, major: 486, minor: 132, visited: false },
+    { name: "Madurai East", mla: "KARTHIKEYAN S", party: "TVK", wards: 16, major: 133, minor: 225, visited: false },
+    { name: "Sholavandan (SC)", mla: "KARUPPAIAH.M.V", party: "TVK", wards: 16, major: 396, minor: 98, visited: false },
+    { name: "Madurai North", mla: "A.KALLANAI", party: "TVK", wards: 16, major: 258, minor: 181, visited: false },
+    { name: "Madurai South", mla: "MM.GOPISON", party: "TVK", wards: 16, major: 134, minor: 159, visited: false },
+    { name: "Madurai Central", mla: "MADHAR BADHURUDEEN", party: "TVK", wards: 16, major: 171, minor: 97, visited: false },
+    { name: "Madurai West", mla: "THANGAPANDI SR", party: "TVK", wards: 16, major: 537, minor: 151, visited: false },
+    { name: "Thiruparankundram", mla: "NIRMALKUMAR. R", party: "DMK", wards: 16, major: 593, minor: 106, visited: false },
+    { name: "Thirumangalam", mla: "MANIMARAN.M", party: "DMK", wards: 16, major: 382, minor: 121, visited: false },
+    { name: "Usilampatti", mla: "VIJAY. M", party: "TVK", wards: 16, major: 576, minor: 157, visited: false },
+  ],
+
+  // THENI
+  'theni': [
+    { name: "Andipatti", mla: "MAHARAJAN.A", party: "DMK", wards: 16, major: 135, minor: 211, visited: false },
+    { name: "Periyakulam (SC)", mla: "SABARI IYNGARAN G.", party: "TVK", wards: 16, major: 450, minor: 68, visited: false },
+    { name: "Bodnayakanur", mla: "PANNEERSELVAM.O", party: "DMK", wards: 16, major: 361, minor: 229, visited: false },
+    { name: "Cumbum", mla: "JEGANATHMISHRA PLA", party: "TVK", wards: 16, major: 278, minor: 156, visited: false },
+  ],
+
+  // VIRUDHUNAGAR
+  'virudhunagar': [
+    { name: "Rajapalayam", mla: "JEGADESHWARI. K", party: "TVK", wards: 16, major: 449, minor: 203, visited: false },
+    { name: "Srivilliputhur (SC)", mla: "KARTHIK.A", party: "TVK", wards: 16, major: 348, minor: 228, visited: false },
+    { name: "Sattur", mla: "KADARKARAIRAJ. A", party: "DMK", wards: 16, major: 594, minor: 111, visited: false },
+    { name: "Sivakasi", mla: "KEERTHANA S", party: "TVK", wards: 16, major: 147, minor: 103, visited: false },
+    { name: "Virudhunagar", mla: "SELVAM P", party: "TVK", wards: 16, major: 189, minor: 73, visited: false },
+  ],
+
+  // TIRUNELVELI
+  'tirunelveli': [
+    { name: "Rajam (SC)", mla: "? (not in screenshots)", party: "TVK", wards: 16, major: 286, minor: 191, visited: false },
+    { name: "Nanguneri", mla: "JAYARAMAN.K.R", party: "TVK", wards: 16, major: 441, minor: 244, visited: false },
+    { name: "Tirunelveli", mla: "VIJAYABASKAR. C", party: "TVK", wards: 16, major: 491, minor: 78, visited: false },
+    { name: "Ambasamudram", mla: "ANNADURAI", party: "TVK", wards: 16, major: 344, minor: 217, visited: false },
+    { name: "Palayamkottai", mla: "JAYAKUMAR. A", party: "TVK", wards: 16, major: 116, minor: 177, visited: false },
+  ],
+
+  // TENKASI
+  'tenkasi': [
+    { name: "Tenkasi", mla: "NAGARAJAN. R", party: "TVK", wards: 16, major: 473, minor: 67, visited: false },
+    { name: "Alangulam", mla: "VIJAYAKUMAR. R", party: "TVK", wards: 16, major: 255, minor: 62, visited: false },
+    { name: "Kadayanallur (SC)", mla: "PALANISAMYKUMAR. M", party: "TVK", wards: 16, major: 590, minor: 129, visited: false },
+    { name: "Sankarankovil (SC)", mla: "MUTHUKUMAR. M", party: "TVK", wards: 16, major: 492, minor: 183, visited: false },
+    { name: "Vasudevanallur", mla: "SREENIVASA PERUMAL. G", party: "TVK", wards: 16, major: 371, minor: 142, visited: false },
+  ],
+
+  // THOOTHUKUDI
+  'thoothukudi': [
+    { name: "Sivagiri (SC)", mla: "KRISHNAMURTHY. K", party: "TVK", wards: 16, major: 415, minor: 184, visited: false },
+    { name: "Thoothukudi", mla: "RAJESH NARAYANAN. M", party: "TVK", wards: 16, major: 133, minor: 125, visited: false },
+    { name: "Tiruchendur", mla: "SUNDARAM. S", party: "TVK", wards: 16, major: 567, minor: 237, visited: false },
+    { name: "Srivaikuntam", mla: "SEKAR. B", party: "TVK", wards: 16, major: 266, minor: 101, visited: false },
+    { name: "Ottapidaram (SC)", mla: "JOHN JEYARAMAN. L", party: "TVK", wards: 16, major: 304, minor: 139, visited: false },
+    { name: "Vilathikulam", mla: "AANDAVAR PRASATH. M", party: "TVK", wards: 16, major: 205, minor: 192, visited: false },
+  ],
+
+  // KANYAKUMARI
+  'kanyakumari': [
+    { name: "Killiyoor", mla: "RADHAKRISHNAN. M.K", party: "TVK", wards: 16, major: 144, minor: 120, visited: false },
+    { name: "Nagercoil", mla: "ANBALAGAN. N", party: "TVK", wards: 16, major: 449, minor: 69, visited: false },
+    { name: "Colachel", mla: "SATHYASEELAN. P.K", party: "TVK", wards: 16, major: 547, minor: 107, visited: false },
+    { name: "Padmanabhapuram", mla: "SELVAGANAPATHY. K", party: "TVK", wards: 16, major: 127, minor: 217, visited: false },
+    { name: "Vilavancode", mla: "DHINAKARAN. A", party: "TVK", wards: 16, major: 363, minor: 144, visited: false },
+    { name: "Rajakkamangalam (SC)", mla: "VIVEKANAND PADMAVATHI. V.S", party: "TVK", wards: 16, major: 410, minor: 91, visited: false },
+  ],
+
+  // RANIPET
+  'ranipet': [
+    { name: "Arcot", mla: "SRINIVASAN. S", party: "TVK", wards: 16, major: 508, minor: 198, visited: false },
+    { name: "Ranipet", mla: "JAYAKUMAR. T", party: "TVK", wards: 16, major: 412, minor: 155, visited: false },
+    { name: "Walajah", mla: "DHANUSH. K.R", party: "TVK", wards: 16, major: 416, minor: 113, visited: false },
+  ],
+
+  // MAYILADUTHURAI
+  'mayiladuthurai': [
+    { name: "Sirkazhi", mla: "THAMBIDURAI. K", party: "TVK", wards: 16, major: 502, minor: 119, visited: false },
+    { name: "Mayiladuthurai (SC)", mla: "PRABAHARAN. T", party: "TVK", wards: 16, major: 368, minor: 169, visited: false },
+  ],
+
+  // KALLAKURICHI
+  'kallakurichi': [
+    { name: "Kallakurichi", mla: "CHINNADURAI. M", party: "TVK", wards: 16, major: 468, minor: 243, visited: false },
+  ],
+
+Total constituencies: 234
+Districts covered: 36

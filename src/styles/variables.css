@@ -1,0 +1,24 @@
+
+
+:root {
+  --primary:        #1d4ed8; 
+  --primary-light:  #eff6ff;
+  --secondary:      #0ea5e9; 
+  --secondary-light:#e0f2fe;
+  --success:        #10b981;
+  --success-light:  #d1fae5;
+  --warning:        #f59e0b;
+  --warning-light:  #fef3c7;
+  --danger:         #ef4444;
+  --danger-light:   #fee2e2;
+  --text-main:      #1e293b;
+  --text-muted:     #64748b;
+  --bg-main:        #f8fafc; 
+  --bg-card:        #ffffff;
+  --border-color:   #e2e8f0;
+  --sidebar-bg:     #0f172a; 
+  --sidebar-active: linear-gradient(90deg, #2563eb, #1d4ed8);
+  --sidebar-text:   #cbd5e1;
+  --sidebar-text-active: #ffffff;
+  --font-sans:      'Inter', system-ui, -apple-system, sans-serif;
+}

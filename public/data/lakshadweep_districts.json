@@ -1,0 +1,16 @@
+[
+  {
+    "id": "lakshadweep",
+    "name": "Lakshadweep",
+    "hq": "Kavaratti",
+    "constituenciesCount": 1,
+    "population": 53687,
+    "complaintsMajor": 10,
+    "complaintsMinor": 7,
+    "candidates": 17,
+    "wardsCount": 15,
+    "visitedCount": 8,
+    "notVisitedCount": 7,
+    "engaged": 570
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "north_goa",
+    "name": "North Goa",
+    "hq": "Panaji",
+    "constituenciesCount": 23,
+    "population": 824324,
+    "complaintsMajor": 90,
+    "complaintsMinor": 80,
+    "candidates": 19,
+    "wardsCount": 345,
+    "visitedCount": 243,
+    "notVisitedCount": 102,
+    "engaged": 21525
+  },
+  {
+    "id": "south_goa",
+    "name": "South Goa",
+    "hq": "Margao",
+    "constituenciesCount": 17,
+    "population": 618578,
+    "complaintsMajor": 57,
+    "complaintsMinor": 44,
+    "candidates": 13,
+    "wardsCount": 255,
+    "visitedCount": 210,
+    "notVisitedCount": 45,
+    "engaged": 13146
+  }
+]

@@ -1,0 +1,55 @@
+
+.stat-icon-wrapper svg {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+}
+
+/* Category Specific Styles matching the reference image */
+.stat-major { background-color: #fef2f2; }
+.stat-major .stat-icon-wrapper { background-color: #dc2626; }
+.stat-major .stat-number { color: #dc2626; }
+
+.stat-minor { background-color: #fff7ed; }
+.stat-minor .stat-icon-wrapper { background-color: #ea580c; }
+.stat-minor .stat-number { color: #ea580c; }
+
+.stat-visited { background-color: #f0fdf4; }
+.stat-visited .stat-icon-wrapper { background-color: #16a34a; }
+.stat-visited .stat-number { color: #16a34a; }
+
+.stat-number {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.theme-yellow { border-bottom: 4px solid #facc15; }
+.theme-blue { border-bottom: 4px solid #3b82f6; }
+.theme-purple { border-bottom: 4px solid #a855f7; }
+
+
+/* --- FLUID TYPOGRAPHY & MOBILE-FIRST UTILITIES --- */
+.overview-title { font-size: clamp(1.25rem, 2vw + 1rem, 1.5rem); }
+.overview-subtitle { font-size: clamp(0.75rem, 1vw + 0.5rem, 0.85rem); }
+.kpi-value { font-size: clamp(1.25rem, 2.5vw + 1rem, 1.75rem); }
+h1, h2, h3 { font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem); }
+
+/* Table wrapper scrolling — overflow goes on the PARENT, not the table */
+.interactive-table-card,
+.problems-card,
+.card {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drilldown-table, .problems-table {
+  width: 100%;
+}
