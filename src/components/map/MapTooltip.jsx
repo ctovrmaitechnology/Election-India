@@ -124,27 +124,29 @@ export default function MapTooltip({ hoverInfo, mousePos, type = 'district' }) {
       </div>
 
       {/* Risk badge */}
-      <div style={{
-        marginTop:     '10px',
-        paddingTop:    '8px',
-        borderTop:     '1px solid #f1f5f9',
-        display:       'flex',
-        alignItems:    'center',
-        justifyContent:'space-between',
-      }}>
-        <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>Risk Level</span>
-        <span style={{
-          fontSize:       '11px',
-          fontWeight:     800,
-          color:          riskColor,
-          background:     riskBg,
-          padding:        '3px 10px',
-          borderRadius:   '20px',
-          letterSpacing:  '0.3px',
+      {hoverInfo.risk && (
+        <div style={{
+          marginTop:     '10px',
+          paddingTop:    '8px',
+          borderTop:     '1px solid #f1f5f9',
+          display:       'flex',
+          alignItems:    'center',
+          justifyContent:'space-between',
         }}>
-          {hoverInfo.risk}
-        </span>
-      </div>
+          <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 600 }}>Risk Level</span>
+          <span style={{
+            fontSize:       '11px',
+            fontWeight:     800,
+            color:          riskColor,
+            background:     riskBg,
+            padding:        '3px 10px',
+            borderRadius:   '20px',
+            letterSpacing:  '0.3px',
+          }}>
+            {hoverInfo.risk}
+          </span>
+        </div>
+      )}
 
       {/* Click hint */}
       <div style={{

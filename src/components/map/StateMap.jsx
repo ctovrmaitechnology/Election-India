@@ -12,21 +12,22 @@ export default function StateMap({
   onDistrictClick,
   loadedStates,
   onBackToIndia,
+  strokeWidth = '2.5px'
 }) {
-  const containerRef   = useRef(null);
-  const cleanupRef     = useRef(null);
-  const loadedRef      = useRef(loadedStates); // keep a live ref so closures see latest value
-  const [svgReady, setSvgReady]   = useState(false);
-  const [loading,  setLoading]    = useState(true);
-  const [error,    setError]      = useState(null);
+  const containerRef = useRef(null);
+  const cleanupRef = useRef(null);
+  const loadedRef = useRef(loadedStates); // keep a live ref so closures see latest value
+  const [svgReady, setSvgReady] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-  const [mousePos,  setMousePos]  = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // Keep ref in sync
   loadedRef.current = loadedStates;
 
   const districts = loadedStates.get(stateId) || [];
-  
+
   // Calculate relative thresholds per state for balanced, colorful visual distribution
   const complaintTotals = districts.map(d => (d.complaintsMajor || 0) + (d.complaintsMinor || 0)).sort((a, b) => a - b);
   const lowThreshold = complaintTotals.length > 0
@@ -37,8 +38,15 @@ export default function StateMap({
     : 400;
 
   const resolveRiskColor = (total) => {
+    if (complaintTotals.length > 0 && complaintTotals.length <= 3) {
+      const maxTotal = Math.max(...complaintTotals);
+      const minTotal = Math.min(...complaintTotals);
+      if (total === maxTotal && maxTotal > minTotal) return '#dc2626'; // High Risk (Red)
+      if (total === minTotal) return '#2563eb';                        // Low Risk (Blue)
+      return '#eab308';                                                // Medium Risk (Yellow)
+    }
     if (total > highThreshold) return '#dc2626'; // High Risk (Red)
-    if (total > lowThreshold)  return '#eab308'; // Medium Risk (Yellow)
+    if (total > lowThreshold) return '#eab308'; // Medium Risk (Yellow)
     return '#2563eb';                            // Low Risk (Blue)
   };
 
@@ -46,9 +54,9 @@ export default function StateMap({
   const counts = { high: 0, medium: 0, low: 0 };
   districts.forEach(d => {
     const t = (d.complaintsMajor || 0) + (d.complaintsMinor || 0);
-    if (t > highThreshold)      counts.high++;
+    if (t > highThreshold) counts.high++;
     else if (t > lowThreshold) counts.medium++;
-    else                        counts.low++;
+    else counts.low++;
   });
 
   // Helper: SVG path id → district id
@@ -84,7 +92,7 @@ export default function StateMap({
       while ((match = numRegex.exec(coordsStr)) !== null) {
         numbers.push(Number(match[0]));
       }
-      
+
       const isRelative = (cmd === cmd.toLowerCase());
       const upperCmd = cmd.toUpperCase();
 
@@ -227,12 +235,10 @@ export default function StateMap({
         svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         svg.style.backgroundColor = 'transparent';
         svg.style.background = 'transparent';
-
-        // Kill background rects & polygons
+        // Kill background rects
         svg.querySelectorAll('rect').forEach(r => {
           r.style.fill = 'transparent'; r.style.stroke = 'none'; r.setAttribute('fill', 'transparent');
         });
-        svg.querySelectorAll('polygon').forEach(p => p.style.fill = 'transparent');
 
         // Tooltip mouse position tracking
         let frameId = null;
@@ -249,13 +255,15 @@ export default function StateMap({
           const t = e.touches[0];
           setMousePos({ x: t.clientX, y: t.clientY });
           const el = document.elementFromPoint(t.clientX, t.clientY);
-          if (el?.tagName === 'path') {
-            const dId = resolveId(el.getAttribute('id'));
+          const districtEl = el?.closest('.district') || (el?.tagName === 'path' && el.getAttribute('id') ? el : null);
+
+          if (districtEl) {
+            const dId = resolveId(districtEl.getAttribute('id'));
             const districtsList = loadedRef.current.get(stateId) || [];
             if (dId && districtsList.find(d => d.id === dId)) {
-              if (hoverPath !== el) {
+              if (hoverPath !== districtEl) {
                 hoverPath?.dispatchEvent(new Event('mouseleave'));
-                hoverPath = el;
+                hoverPath = districtEl;
                 hoverPath.dispatchEvent(new MouseEvent('mouseenter', { clientX: t.clientX, clientY: t.clientY, bubbles: true }));
               }
             } else { hoverPath?.dispatchEvent(new Event('mouseleave')); hoverPath = null; }
@@ -266,9 +274,13 @@ export default function StateMap({
         svg.addEventListener('touchend', handleTouchEnd);
 
         // ── Style each path ───────────────────────────────────────────────
+        const elementsToProcess = Array.from(svg.querySelectorAll('.district')).length > 0
+          ? svg.querySelectorAll('.district')
+          : svg.querySelectorAll('path[id]');
+
         const listeners = [];
-        svg.querySelectorAll('path').forEach(path => {
-          const pathId = path.getAttribute('id');
+        elementsToProcess.forEach(el => {
+          const pathId = el.getAttribute('id');
           const districtId = resolveId(pathId);
 
           // Use loadedRef to get live district data
@@ -276,43 +288,45 @@ export default function StateMap({
           const district = districtsList.find(d => d.id === districtId);
 
           if (!district) {
-            path.style.fill = 'transparent';
-            path.style.stroke = '#dde3ec';
-            path.style.strokeWidth = '0.8px';
-            path.style.pointerEvents = 'none';
+            el.style.fill = 'transparent';
+            el.style.stroke = '#dde3ec';
+            el.style.strokeWidth = '0.8px';
+            el.style.pointerEvents = 'none';
             return;
           }
 
           const totalComplaints = (district.complaintsMajor || 0) + (district.complaintsMinor || 0);
-          path.style.fill = resolveRiskColor(totalComplaints);
-          path.style.stroke = '#ffffff';
-          path.style.strokeWidth = '2.5px';
-          path.style.cursor = 'pointer';
-          path.style.transition = 'fill 0.2s, filter 0.2s, stroke-width 0.2s';
+          el.style.fill = resolveRiskColor(totalComplaints);
+          const pathStrokeWidth = el.getAttribute('data-stroke-width') || strokeWidth;
+          el.style.stroke = el.getAttribute('data-stroke') || '#ffffff';
+          el.style.strokeWidth = pathStrokeWidth;
+          el.style.cursor = 'pointer';
+          el.style.transition = 'fill 0.2s, filter 0.2s, stroke-width 0.2s';
 
           const onEnter = e => {
-            path.style.filter = 'brightness(1.2) drop-shadow(0 4px 10px rgba(0,0,0,0.28))';
-            path.style.strokeWidth = '4px';
+            el.style.filter = 'brightness(1.2) drop-shadow(0 4px 10px rgba(0,0,0,0.28))';
+            el.style.strokeWidth = `calc(${pathStrokeWidth} + 2px)`;
             const risk = totalComplaints > highThreshold ? 'High' : totalComplaints > lowThreshold ? 'Medium' : 'Low';
             setHoverInfo({ name: district.name, major: district.complaintsMajor || 0, minor: district.complaintsMinor || 0, risk });
             setMousePos({ x: e.clientX, y: e.clientY });
           };
           const onLeave = () => {
-            path.style.filter = 'none';
-            path.style.strokeWidth = '2.5px';
+            el.style.filter = 'none';
+            el.style.strokeWidth = pathStrokeWidth;
             setHoverInfo(null);
           };
           const onClick = () => onDistrictClick(districtId);
 
-          path.addEventListener('mouseenter', onEnter);
-          path.addEventListener('mouseleave', onLeave);
-          path.addEventListener('click', onClick);
-          listeners.push({ path, onEnter, onLeave, onClick });
+          el.addEventListener('mouseenter', onEnter);
+          el.addEventListener('mouseleave', onLeave);
+          el.addEventListener('click', onClick);
+          listeners.push({ path: el, onEnter, onLeave, onClick });
         });
 
         // Generate and append dynamic, high-contrast labels at the center of each district path
         const viewBoxStr = svg.getAttribute('viewBox') || '';
         const parts = viewBoxStr.split(/[\s,]+/);
+
         let viewBoxWidth = 1000;
         let viewBoxHeight = 1000;
         if (parts.length >= 4) {
@@ -323,24 +337,44 @@ export default function StateMap({
         const containerWidth = containerRef.current.clientWidth || 600;
         const containerHeight = containerRef.current.clientHeight || 500;
         const scaleFactor = Math.min(containerWidth / viewBoxWidth, containerHeight / viewBoxHeight);
-        const labelFontSize = Math.max(11.5 / scaleFactor, 8);
+        let labelFontSize = Math.max(11.5 / scaleFactor, 8);
+        if (stateId === 'IN-GA') {
+          labelFontSize = labelFontSize * 1.6;
+        }
 
         const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         labelGroup.setAttribute('id', 'district-labels');
 
         const districtsList = loadedRef.current.get(stateId) || [];
 
-        svg.querySelectorAll('path').forEach(path => {
-          const pathId = path.getAttribute('id');
+        elementsToProcess.forEach(el => {
+          const pathId = el.getAttribute('id');
           const districtId = resolveId(pathId);
           const district = districtsList.find(d => d.id === districtId);
           if (!district) return;
 
           try {
-            const bbox = getPathBBox(path.getAttribute('d') || '');
+            let bbox = null;
+            if (el.tagName.toLowerCase() === 'g') {
+              const cxStr = el.getAttribute('data-cx');
+              const cyStr = el.getAttribute('data-cy');
+              const wStr = el.getAttribute('data-width');
+              if (cxStr && cyStr) {
+                const cw = parseFloat(wStr || '100');
+                bbox = { x: parseFloat(cxStr) - cw / 2, y: parseFloat(cyStr) - cw / 2, width: cw, height: cw };
+              }
+            }
+            if (!bbox) {
+              bbox = getPathBBox(el.getAttribute('d') || '');
+            }
+
             if (bbox && bbox.width >= 0 && bbox.height >= 0) {
               const cx = bbox.x + bbox.width / 2;
               const cy = bbox.y + bbox.height / 2;
+
+              // Ensure font fits within the bounding box (approx 0.6 ratio for character width)
+              const maxFontSize = (bbox.width * 0.9) / (district.name.length * 0.6);
+              const finalFontSize = Math.min(labelFontSize * 1.5, maxFontSize, 32); // Increased base size but capped by bbox
 
               const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
               text.setAttribute('x', cx);
@@ -349,11 +383,11 @@ export default function StateMap({
               text.setAttribute('dominant-baseline', 'middle');
               text.setAttribute('style', `
                 font-family: 'Inter', sans-serif;
-                font-weight: 700;
-                font-size: ${labelFontSize}px;
-                fill: #0f172a;
+                font-weight: 800;
+                font-size: ${finalFontSize}px;
+                letter-spacing: 0.3px;
+                fill: #111827;
                 pointer-events: none;
-                text-shadow: 0 1px 2px rgba(255,255,255,0.85);
               `);
               text.textContent = district.name;
               labelGroup.appendChild(text);
@@ -406,8 +440,8 @@ export default function StateMap({
       if (cleanupRef.current) { cleanupRef.current(); cleanupRef.current = null; }
       abortController.abort();
     };
-  // Re-render only when the SVG URL or viewBox changes (i.e. new state selected)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Re-render only when the SVG URL or viewBox changes (i.e. new state selected)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateId, svgUrl, viewBox]);
 
   // ─── Re-color districts when data loads or selection changes ─────────────
@@ -427,11 +461,12 @@ export default function StateMap({
       const total = (district.complaintsMajor || 0) + (district.complaintsMinor || 0);
       const isSelected = selectedDistrict === districtId || (selectedDistrict === 'mayiladuthurai' && districtId === 'nagapattinam');
       if (isSelected) {
-        path.style.strokeWidth = '6px';
+        path.style.strokeWidth = `calc(${strokeWidth} + 3.5px)`;
         path.style.filter = 'brightness(1.15) drop-shadow(0 6px 16px rgba(0,0,0,0.25))';
       } else {
         path.style.fill = resolveRiskColor(total);
-        path.style.strokeWidth = '2.5px';
+        path.style.strokeWidth = path.getAttribute('data-stroke-width') || strokeWidth;
+        path.style.stroke = path.getAttribute('data-stroke') || '#ffffff';
         path.style.filter = 'none';
         path.style.pointerEvents = 'auto';
       }
@@ -473,7 +508,10 @@ export default function StateMap({
       viewBoxHeight = parseFloat(vbParts[3]) || 1000;
     }
     // Base font size relative to viewBox (scale factor adjusted to target ~11.5px on screen)
-    const baseFontSize = Math.max(viewBoxWidth * 0.026, 8);
+    let baseFontSize = Math.max(viewBoxWidth * 0.026, 8);
+    if (stateId === 'IN-GA') {
+      baseFontSize = baseFontSize * 1.6; // increase text size for Goa map
+    }
     // Minimum district area fraction to show a label (skip tiny slivers)
     const minBBoxArea = (viewBoxWidth * viewBoxHeight) * 0.0008;
 
@@ -482,9 +520,9 @@ export default function StateMap({
 
     const rectsOverlap = (r1, r2, padding = 4) => {
       return !(r1.right + padding < r2.left ||
-               r1.left - padding > r2.right ||
-               r1.bottom + padding < r2.top ||
-               r1.top - padding > r2.bottom);
+        r1.left - padding > r2.right ||
+        r1.bottom + padding < r2.top ||
+        r1.top - padding > r2.bottom);
     };
 
     const hardcodedOffsets = {
@@ -567,7 +605,7 @@ export default function StateMap({
           const line2 = words.slice(mid).join(' ');
           const longestLine = Math.max(line1.length, line2.length);
           const fittedFontSize = Math.min(baseFontSize, (bbox.width / (longestLine * 0.55)));
-          
+
           if (bbox.height >= fontSize * 2.5) {
             lines = [line1, line2];
             fontSize = Math.max(fittedFontSize, baseFontSize * 0.75);
@@ -688,7 +726,7 @@ export default function StateMap({
   return (
 
     <div className="card map-card-container" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      
+
       {/* ── Card Header Bar matching screenshot ── */}
       <div style={{
         display: 'flex',
@@ -730,15 +768,15 @@ export default function StateMap({
         </div>
       </div>
 
-      <div className="map-inner-wrapper" style={{ 
-        padding: '4px 8px 8px 8px', 
-        position: 'relative', 
+      <div className="map-inner-wrapper" style={{
+        padding: '4px 8px 8px 8px',
+        position: 'relative',
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         minHeight: 0
       }}>
-        
+
         {/* Map Title and Legend Row */}
         <div style={{
           display: 'flex',
@@ -751,7 +789,7 @@ export default function StateMap({
             <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '700', color: '#1e293b' }}>{title} Map</h3>
             <p style={{ margin: '2px 0 0 0', fontSize: '11px', color: '#64748b' }}>Interactive Regional District boundaries</p>
           </div>
-          
+
           <div style={{
             display: 'flex',
             alignItems: 'center',

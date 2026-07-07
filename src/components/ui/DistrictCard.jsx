@@ -85,6 +85,12 @@ const tamilnaduImages = {
   virudhunagar:   'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%A8%E0%AE%95%E0%AE%B0%E0%AF%8D_%28%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%AA%E0%AE%9F%E0%AF%8D%E0%AE%9F%E0%AE%BF%29.JPG/960px-%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%A8%E0%AE%95%E0%AE%B0%E0%AF%8D_%28%E0%AE%B5%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%81%E0%AE%AA%E0%AE%9F%E0%AF%8D%E0%AE%9F%E0%AE%BF%29.JPG',
 };
 
+const goaImages = {
+  north_goa: '/north_goa_bg.png',
+  south_goa: '/south_goa_bg.png',
+  kushavati: '/kushavati_bg.jpg'
+};
+
 // Pool of 40 diverse, high-quality Unsplash landmark / nature / cityscape photos.
 // Each district gets one chosen deterministically from its name — so the same
 // district always shows the same image, but neighbouring cards look different.
@@ -254,6 +260,7 @@ export default function DistrictCard({ district, index, onClick }) {
   const [image, setImage] = useState(
     karnatakaImages[district.id] ||
     tamilnaduImages[district.id] ||
+    goaImages[district.id] ||
     fallbackUnsplash
   );
 
@@ -268,8 +275,13 @@ export default function DistrictCard({ district, index, onClick }) {
       setImage(tamilnaduImages[district.id]);
       return;
     }
+    // 3. Goa districts keep local images
+    if (goaImages[district.id]) {
+      setImage(goaImages[district.id]);
+      return;
+    }
 
-    // 3. For all other districts, check local cache
+    // 4. For all other districts, check local cache
     const cacheKey = district.id || district.name;
     if (wikiImageCache.has(cacheKey)) {
       setImage(wikiImageCache.get(cacheKey));
@@ -331,9 +343,18 @@ export default function DistrictCard({ district, index, onClick }) {
     };
   }, [district.id, district.name, index]);
 
+  const imageStyle = {
+    backgroundImage: `url(${image})`
+  };
+
+  if (district.id === 'north_goa') {
+    imageStyle.backgroundSize = '105%';
+    imageStyle.backgroundPosition = 'center 40%';
+  }
+
   return (
     <div className={`premium-card theme-${theme}`} onClick={onClick}>
-      <div className="premium-card-image" style={{ backgroundImage: `url(${image})` }}>
+      <div className="premium-card-image" style={imageStyle}>
         
         <svg className="premium-ribbon" viewBox="0 0 1440 200" preserveAspectRatio="none">
           <path className="ribbon-color" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z"></path>

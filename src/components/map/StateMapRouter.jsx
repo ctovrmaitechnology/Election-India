@@ -1,6 +1,7 @@
 import React from 'react';
 import KarnatakaMap from './KarnatakaMap';
 import StateMap from './StateMap';
+import GoaMap from './GoaMap';
 
 // State-specific SVG configurations for non-Karnataka states
 const STATE_CONFIGS = {
@@ -17,7 +18,6 @@ const STATE_CONFIGS = {
   'IN-PY': { svgUrl: '/maps/puducherry.svg',          viewBox: '0 0 200 200',                      title: 'Puducherry' },
   'IN-JH': { svgUrl: '/maps/jharkhand.svg',           viewBox: '0 0 1000.00 740.00',               title: 'Jharkhand' },
   'IN-RJ': { svgUrl: '/maps/rajasthan.svg',           viewBox: '0 0 1000 812.45',                  title: 'Rajasthan' },
-  'IN-GA': { svgUrl: '/maps/goa.svg',                 viewBox: '0 0 733.24 1000.00',               title: 'Goa' },
   'IN-AN': { svgUrl: '/maps/andaman.svg',             viewBox: '497 516 47 184',                   title: 'Andaman & Nicobar Islands' },
   'IN-LD': { svgUrl: '/maps/lakshadweep.svg',         viewBox: '76 585 44 84',                     title: 'Lakshadweep' },
   'IN-DN': { svgUrl: '/maps/dadra_nagar_haveli.svg',  viewBox: '42 377 74 41',                     title: 'Dadra & Nagar Haveli and Daman & Diu' },
@@ -52,6 +52,18 @@ export default function StateMapRouter({ stateId, selectedDistrict, onDistrictCl
     );
   }
 
+  // Goa: use custom runtime-parsed GoaMap component
+  if (stateId === 'IN-GA') {
+    return (
+      <GoaMap
+        selectedDistrict={selectedDistrict}
+        onDistrictClick={onDistrictClick}
+        loadedStates={loadedStates}
+        onBackToIndia={onBackToIndia}
+      />
+    );
+  }
+
   const config = STATE_CONFIGS[stateId];
 
   if (!config) {
@@ -68,11 +80,12 @@ export default function StateMapRouter({ stateId, selectedDistrict, onDistrictCl
       svgUrl={config.svgUrl}
       viewBox={config.viewBox}
       title={config.title}
-      pathToDistrict={null}
+      pathToDistrict={config.pathToDistrict || null}
       selectedDistrict={selectedDistrict}
       onDistrictClick={onDistrictClick}
       loadedStates={loadedStates}
       onBackToIndia={onBackToIndia}
+      strokeWidth={config.strokeWidth}
     />
   );
 }

@@ -28,7 +28,7 @@ export const newStatesConstituencyData = {
       "visited": true
     },
     {
-      "name": "Mayem",
+      "name": "Maem",
       "mla": "Premendra Shet",
       "party": "BJP",
       "wards": 15,
@@ -154,6 +154,15 @@ export const newStatesConstituencyData = {
       "visited": true
     },
     {
+      "name": "Tivim",
+      "mla": "Nilkanth Halarnkar",
+      "party": "BJP",
+      "wards": 15,
+      "major": 10,
+      "minor": 8,
+      "visited": true
+    },
+    {
       "name": "St. Andre",
       "mla": "Viresh Borkar",
       "party": "RGP",
@@ -170,7 +179,9 @@ export const newStatesConstituencyData = {
       "major": 14,
       "minor": 9,
       "visited": false
-    },
+    }
+  ],
+  "south_goa": [
     {
       "name": "Ponda",
       "mla": "Ravi Naik",
@@ -181,7 +192,7 @@ export const newStatesConstituencyData = {
       "visited": true
     },
     {
-      "name": "Shiroda",
+      "name": "Siroda",
       "mla": "Subhash Shirodkar",
       "party": "BJP",
       "wards": 15,
@@ -197,9 +208,7 @@ export const newStatesConstituencyData = {
       "major": 12,
       "minor": 6,
       "visited": true
-    }
-  ],
-  "south_goa": [
+    },
     {
       "name": "Mormugao",
       "mla": "Sankalp Amonkar",
@@ -308,6 +317,8 @@ export const newStatesConstituencyData = {
       "minor": 9,
       "visited": true
     },
+  ],
+  "kushavati": [
     {
       "name": "Quepem",
       "mla": "Altone D'Costa",

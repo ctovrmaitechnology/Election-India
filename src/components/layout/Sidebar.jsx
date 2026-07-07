@@ -71,10 +71,9 @@ export default function Sidebar({
 
   const currentStateName = stateNames[selectedState] || 'INDIA CAMPAIGN';
 
-  // Navigation Items matching the screenshot
   const navItems = [
     { id: 'overview',    label: 'Overview Map',       icon: <><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></> },
-    { id: 'districts',   label: 'States & UTs',       icon: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></> },
+    { id: 'districts',   label: selectedState === 'All' ? 'States' : 'Districts', icon: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></> },
     { id: 'settings',    label: 'Settings',           icon: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></> },
   ];
 
@@ -93,8 +92,8 @@ export default function Sidebar({
             <AppLogo />
           </div>
           <div>
-            <h1 className="logo-text">INDIA ELECTION</h1>
-            <p className="logo-subtitle">REGIONAL DASHBOARD</p>
+            <h1 className="logo-text">{selectedState === 'IN-GA' ? 'GOA' : 'INDIA'}</h1>
+            <p className="logo-subtitle">{selectedState === 'IN-GA' ? 'PEOPLE CONNECT' : 'REGIONAL DASHBOARD'}</p>
           </div>
         </div>
 

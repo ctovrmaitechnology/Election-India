@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { fetchWithRetry, getRiskColor } from '../../utils/helpers';
 import MapTooltip from './MapTooltip';
 
@@ -37,61 +37,55 @@ const SVG_TO_STATE = {
   'nl': 'IN-NL',
   'ar': 'IN-AR',
   'sk': 'IN-SK',
-  'jk': 'IN-JK'
+  'jk': 'IN-JK',
+  'dl': 'IN-DL'
 };
 
 const VALID_SVG_IDS = new Set(Object.keys(SVG_TO_STATE));
 
-// Exact colors matching the user's reference image
-const HIGH_RED = '#d32f2f';
-const MED_YELLOW = '#e5a93c';
-const LOW_BLUE = '#3182bd';
-
-const MAP_STATE_COLORS = {
-  // Red (High)
-  'ka': HIGH_RED,
-  'ap': HIGH_RED,
-  'jk': HIGH_RED,
-  'pb': HIGH_RED,
-  'up': HIGH_RED,
-  'br': HIGH_RED,
-  'ar': HIGH_RED,
-  'as': HIGH_RED,
-  'ml': HIGH_RED,
-  'nl': HIGH_RED,
-  'mz': HIGH_RED,
-  'tr': HIGH_RED,
-  'dl': HIGH_RED,
-
-  // Yellow (Med)
-  'tn': MED_YELLOW,
-  'kl': MED_YELLOW,
-  'mh': MED_YELLOW,
-  'mp': MED_YELLOW,
-  'gj': MED_YELLOW,
-  'or': MED_YELLOW,
-  'wb': MED_YELLOW,
-  'hp': MED_YELLOW,
-  'mn': MED_YELLOW,
-
-  // Blue (Low)
-  'tg': LOW_BLUE,
-  'ct': LOW_BLUE,
-  'jh': LOW_BLUE,
-  'rj': LOW_BLUE,
-  'hr': LOW_BLUE,
-  'ut': LOW_BLUE,
-  'sk': LOW_BLUE,
-  'ga': LOW_BLUE,
-  'an': LOW_BLUE,
-  'ld': LOW_BLUE,
-  'py': LOW_BLUE,
-  'ch': LOW_BLUE,
-  'dn': LOW_BLUE,
-  'dd': LOW_BLUE,
+// Vibrant categorical colors for each state
+const STATE_COLORS = {
+  'ap': '#3b82f6', // blue-500
+  'ar': '#10b981', // emerald-500
+  'as': '#f59e0b', // amber-500
+  'br': '#ef4444', // red-500
+  'ct': '#8b5cf6', // violet-500
+  'ga': '#14b8a6', // teal-500
+  'gj': '#f97316', // orange-500
+  'hr': '#06b6d4', // cyan-500
+  'hp': '#6366f1', // indigo-500
+  'jk': '#ec4899', // pink-500
+  'jh': '#84cc16', // lime-500
+  'ka': '#f43f5e', // rose-500
+  'kl': '#0ea5e9', // sky-500
+  'mp': '#d946ef', // fuchsia-500
+  'mh': '#eab308', // yellow-500
+  'mn': '#22c55e', // green-500
+  'ml': '#64748b', // slate-500
+  'mz': '#a855f7', // purple-500
+  'nl': '#f59e0b', // amber-500
+  'or': '#ef4444', // red-500
+  'pb': '#3b82f6', // blue-500
+  'rj': '#10b981', // emerald-500
+  'sk': '#8b5cf6', // violet-500
+  'tn': '#f97316', // orange-500
+  'tg': '#14b8a6', // teal-500
+  'tr': '#06b6d4', // cyan-500
+  'up': '#6366f1', // indigo-500
+  'ut': '#ec4899', // pink-500
+  'wb': '#84cc16', // lime-500
+  'an': '#64748b', // slate-500
+  'ch': '#a855f7', // purple-500
+  'dn': '#f43f5e', // rose-500
+  'dd': '#f43f5e', // rose-500
+  'dl': '#0ea5e9', // sky-500
+  'ld': '#d946ef', // fuchsia-500
+  'py': '#eab308'  // yellow-500
 };
 
-const SOUTH_STATE_COLORS = MAP_STATE_COLORS;
+const resolveStateColor = (svgId) => {
+  return STATE_COLORS[svgId] || '#cbd5e1';
+};
 
 // State names for tooltip display
 const STATE_DISPLAY_NAMES = {
@@ -127,7 +121,8 @@ const STATE_DISPLAY_NAMES = {
   'IN-NL': 'Nagaland',
   'IN-AR': 'Arunachal Pradesh',
   'IN-SK': 'Sikkim',
-  'IN-JK': 'Jammu & Kashmir'
+  'IN-JK': 'Jammu & Kashmir',
+  'IN-DL': 'Delhi'
 };
 
 // Short names for clean labeling on the map
@@ -165,12 +160,13 @@ const STATE_LABEL_NAMES = {
   'an': 'Andaman & Nicobar',
   'ld': 'Lakshadweep',
   'dn': 'DNH & DD',
-  'dd': 'DNH & DD'
+  'dd': 'DNH & DD',
+  'dl': 'Delhi'
 };
 
-// Returns the exact risk color matching the user's reference image
+// Returns a default color for unmapped SVG paths
 function getStateColor(stateId) {
-  return MAP_STATE_COLORS[stateId.toLowerCase()] || '#cbd5e1';
+  return resolveStateColor(stateId);
 }
 
 export default function IndiaMap({ selectedState, onStateClick, loadedStates }) {
@@ -181,6 +177,9 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
   const [hoverInfo, setHoverInfo] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const cleanupRef = useRef(null);
+  const cachedData = useRef({ svgText: null, summaryData: null });
+
+  // Removing riskStats logic
 
   // Initialize and load the SVG and summary
   useEffect(() => {
@@ -188,24 +187,29 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
     const { signal } = abortController;
 
     async function initMap() {
-      setLoading(true);
-      setError(null);
-      try {
-        const [svgText, summaryData] = await Promise.all([
-          fetchWithRetry('/maps/india.svg', { signal }).then(r => r.text()),
-          fetchWithRetry('/data/stateSummary.json', { signal }).then(r => r.json())
-        ]);
+      if (!cachedData.current.svgText || !cachedData.current.summaryData) {
+        setLoading(true);
+        setError(null);
+        try {
+          const [svgText, summaryData] = await Promise.all([
+            fetchWithRetry('/maps/india.svg', { signal }).then(r => r.text()),
+            fetchWithRetry('/data/stateSummary.json', { signal }).then(r => r.json())
+          ]);
 
-        if (signal.aborted) return;
-        setSummary(summaryData);
-        renderSvg(svgText, summaryData);
-        setLoading(false);
-      } catch (err) {
-        if (!signal.aborted) {
-          console.error('Failed to initialize India map:', err);
-          setError(err.message || 'Failed to load map data.');
+          if (signal.aborted) return;
+          cachedData.current = { svgText, summaryData };
+          setSummary(summaryData);
+          renderSvg(svgText, summaryData);
           setLoading(false);
+        } catch (err) {
+          if (!signal.aborted) {
+            console.error('Failed to initialize India map:', err);
+            setError(err.message || 'Failed to load map data.');
+            setLoading(false);
+          }
         }
+      } else {
+        renderSvg(cachedData.current.svgText, cachedData.current.summaryData);
       }
     }
 
@@ -339,10 +343,9 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
           minorCount = stateInfo.complaintsMinor || 0;
         }
 
-        // Apply distinct brand color for each South Indian state to vary them
-        const baseColor = SOUTH_STATE_COLORS[svgPathId] || '#cbd5e1';
+        // Apply color based on state identity
+        const baseColor = resolveStateColor(svgPathId);
         path.style.fill = baseColor;
-        path.style.stroke = '#ffffff';
         path.style.strokeWidth = '1.2px';
         path.style.cursor = 'pointer';
         path.style.transition = 'fill 0.2s, filter 0.2s, stroke-width 0.2s';
@@ -352,7 +355,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
           path.style.filter = 'brightness(1.15) drop-shadow(0 4px 12px rgba(0,0,0,0.22))';
           path.style.strokeWidth = '2px';
 
-          const risk = totalComplaints > 20000 ? 'High' : (totalComplaints > 10000 ? 'Medium' : 'Low');
           const stateDistricts = loadedStates.has(stateId) ? loadedStates.get(stateId).length : null;
           setHoverInfo({
             name:      STATE_DISPLAY_NAMES[stateId] || stateInfo.name || stateId,
@@ -360,7 +362,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
             minor:     minorCount,
             total:     totalComplaints,
             districts: stateDistricts,
-            risk,
           });
           setMousePos({ x: e.clientX, y: e.clientY });
         };
@@ -412,7 +413,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
             line.setAttribute('y1', '588');
             line.setAttribute('x2', '274');
             line.setAttribute('y2', '588');
-            line.setAttribute('stroke', '#0f766e');
             line.setAttribute('stroke-width', '1');
             line.setAttribute('stroke-dasharray', '2,2');
             markerGroup.appendChild(line);
@@ -422,7 +422,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
             pulse.setAttribute('cx', '243');
             pulse.setAttribute('cy', '588');
             pulse.setAttribute('r', '5');
-            pulse.setAttribute('stroke', '#14b8a6');
             pulse.setAttribute('fill', 'none');
             pulse.setAttribute('stroke-width', '1.5');
             
@@ -447,8 +446,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
             center.setAttribute('cx', '243');
             center.setAttribute('cy', '588');
             center.setAttribute('r', '2.5');
-            center.setAttribute('fill', '#14b8a6');
-            center.setAttribute('stroke', '#ffffff');
             center.setAttribute('stroke-width', '0.8');
             markerGroup.appendChild(center);
 
@@ -461,9 +458,7 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
               font-family: 'Inter', sans-serif;
               font-weight: 700;
               font-size: 8px;
-              fill: #0f766e;
               user-select: none;
-              text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 2px rgba(255,255,255,0.9);
             `);
             text.textContent = 'Puducherry';
             markerGroup.appendChild(text);
@@ -491,7 +486,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
             const handleMouseEnter = (e) => {
               p.style.filter = 'brightness(1.15) drop-shadow(0 4px 12px rgba(0,0,0,0.22))';
               p.style.strokeWidth = '2px';
-              const risk = totalComplaints > 20000 ? 'High' : (totalComplaints > 10000 ? 'Medium' : 'Low');
               const stateDistricts = loadedStates.has(stateId) ? loadedStates.get(stateId).length : null;
               setHoverInfo({
                 name: 'Puducherry',
@@ -499,7 +493,6 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
                 minor: minorCount,
                 total: totalComplaints,
                 districts: stateDistricts,
-                risk,
               });
               setMousePos({ x: e.clientX, y: e.clientY });
             };
@@ -524,68 +517,108 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
           }
 
           const name = STATE_LABEL_NAMES[id];
-          if (!name) return;
-
           // Skip micro UTs where labels are unreadable
-          if (['ch', 'dl', 'dn', 'dd'].includes(id)) return;
+          if (['ch', 'dn', 'dd'].includes(id)) return;
 
-          // Hardcoded label centers in SVG viewBox (0 0 612 696) coordinates
-          // for every state — avoids relying on getBBox() timing issues.
-          const LABEL_POS = {
-            'an': { x: 553, y: 640 },
-            'ap': { x: 232, y: 535 },
-            'ar': { x: 548, y: 243 },
-            'as': { x: 506, y: 272 },
-            'br': { x: 368, y: 265 },
-            'ct': { x: 298, y: 382 },
-            'ga': { x: 131, y: 514 },
-            'gj': { x: 100, y: 342 },
-            'hp': { x: 207, y: 139 },
-            'hr': { x: 182, y: 196 },
-            'jh': { x: 368, y: 322 },
-            'jk': { x: 183, y: 84  },
-            'ka': { x: 170, y: 510 },
-            'kl': { x: 169, y: 605 },
-            'ld': { x: 97,  y: 614 },
-            'ml': { x: 487, y: 285 },
-            'mn': { x: 537, y: 306 },
-            'mp': { x: 246, y: 306 },
-            'mh': { x: 188, y: 412 },
-            'mz': { x: 519, y: 340 },
-            'nl': { x: 543, y: 262 },
-            'or': { x: 354, y: 390 },
-            'pb': { x: 158, y: 157 },
-            'rj': { x: 132, y: 245 },
-            'sk': { x: 428, y: 236 },
-            'tn': { x: 206, y: 595 },
-            'tg': { x: 228, y: 462 },
-            'tr': { x: 509, y: 340 },
-            'up': { x: 248, y: 230 },
-            'ut': { x: 237, y: 162 },
-            'wb': { x: 405, y: 340 },
-            'py': null, // handled separately above
+          // Calculate true geometric center of the state's bounding box using getBBox()
+          // This is completely robust to SVG transforms and scaling!
+          let posX = 0, posY = 0;
+          let boxW = 0, boxH = 0;
+
+          try {
+            const bbox = p.getBBox();
+            if (bbox && bbox.width > 0 && bbox.height > 0) {
+              posX = bbox.x + bbox.width / 2;
+              posY = bbox.y + bbox.height / 2;
+              boxW = bbox.width;
+              boxH = bbox.height;
+            }
+          } catch (e) {
+            console.warn('Failed to get BBox for', id);
+          }
+
+          if (!posX || !posY) return;
+
+          // Relative tweaks applied to the perfectly accurate getBBox center!
+          // dx, dy shift the text relative to the geometric center into the thickest part of the state.
+          // fs sets a specific font size so it NEVER spills out of tiny/narrow borders.
+          const STATE_TWEAKS = {
+            // Concave/Weirdly shaped states need their center shifted into the thickest part of the landmass
+            'ap': { dx: -45, dy: 15, fs: 6.5 }, // Shift down-right into the curve
+            'ar': { dx: 8, dy: 2, fs: 4.5 },
+            'as': { dx: -5, dy: 5, fs: 5 }, // Shift left into the thicker body
+            'gj': { dx: -10, dy: -10, fs: 8 }, // Shift left towards the thick mainland
+            'kl': { dx: 3, dy: 5, fs: 5 },
+            'wb': { dx: 2, dy: 25, fs: 5 }, // Shift heavily down into the southern bulb
+
+            // Small states just need tiny fonts to fit cleanly inside
+            'ga': { dx: -5, dy: 0, fs: 4 },
+            'sk': { dx: 0, dy: 2, fs: 4 },
+            'tr': { dx: 0, dy: 0, fs: 4 },
+            'ml': { dx: 0, dy: 0, fs: 4.5 },
+            'mn': { dx: 0, dy: 0, fs: 4.5 },
+            'mz': { dx: 0, dy: 0, fs: 4.5 },
+            'nl': { dx: 0, dy: 0, fs: 4.5 },
+            
+            // Standard states that just need specific font sizes to prevent spilling
+            'br': { dx: 0, dy: 5, fs: 7 },
+            'ct': { dx: -15, dy: -5, fs: 6.5 },
+            'hp': { dx: 0, dy: 2, fs: 6 },
+            'hr': { dx: -2, dy: 2, fs: 6 },
+            'jh': { dx: 0, dy: 5, fs: 7 },
+            'jk': { dx: 0, dy: 15, fs: 7.5 },
+            'ka': { dx: -16, dy: 5, fs: 8 },
+            'mh': { dx: -20, dy: -15, fs: 9 }, // Move slightly up to center in main body
+            'mp': { dx: 0, dy: 25, fs: 9.5 },
+            'or': { dx: 0, dy: -5, fs: 8 },
+            'pb': { dx: -5, dy: -5, fs: 6.5 },
+            'rj': { dx: -10, dy: 0, fs: 9 },
+            'tg': { dx: 0, dy: 5, fs: 8 },
+            'tn': { dx: 5, dy: 0, fs: 7.5 },
+            'up': { dx: 0, dy: 5, fs: 9 },
+            'ut': { dx: -5, dy: 5, fs: 6 },
+            'an': { dx: 0, dy: 0, fs: 5 },
+            'ld': { dx: 0, dy: 0, fs: 5 },
+            'dl': { dx: 0, dy: 0, fs: 3 }, // Very tiny for Delhi
           };
 
-          const pos = LABEL_POS[id];
-          if (!pos) return;
+          let finalFontSize = 9; // default
+          const tweak = STATE_TWEAKS[id];
+
+          if (tweak) {
+             posX += tweak.dx;
+             posY += tweak.dy;
+             finalFontSize = tweak.fs;
+          } else {
+             // Dynamic font sizing as absolute fallback
+             if (boxW > 0) {
+               const maxAllowedWidth = boxW * 0.85;
+               const estTextWidthPerPx = name.length * 0.55;
+               finalFontSize = Math.max(4.5, Math.min(maxAllowedWidth / estTextWidthPerPx, 9.5));
+             }
+          }
 
           const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
           textEl.setAttribute('class', 'state-label');
-          textEl.setAttribute('x', pos.x);
-          textEl.setAttribute('y', pos.y);
+          textEl.setAttribute('x', posX);
+          textEl.setAttribute('y', posY);
           textEl.setAttribute('text-anchor', 'middle');
           textEl.setAttribute('dominant-baseline', 'middle');
-          textEl.style.fontFamily = "'Inter', sans-serif";
           
-          // Large states use 10.5px for high visibility; small/clustered states use 8px
-          const smallStates = ['as', 'ml', 'mn', 'mz', 'nl', 'tr', 'sk', 'ga', 'an', 'ld', 'py'];
-          const fontSize = smallStates.includes(id) ? '8px' : '10.5px';
-          
-          textEl.style.fontSize = fontSize;
-          textEl.style.fontWeight = '700';
-          textEl.style.fill = '#1e293b';
+          // Crisp, professional halo for readability on dark backgrounds without being chunky
+          textEl.setAttribute('paint-order', 'stroke fill');
+          textEl.setAttribute('stroke', '#ffffff');
+          textEl.setAttribute('stroke-width', '2px');
+          textEl.setAttribute('stroke-linecap', 'round');
+          textEl.setAttribute('stroke-linejoin', 'round');
+
+          textEl.style.fontFamily = "'Inter', Arial, sans-serif";
+          textEl.style.fontSize = `${finalFontSize}px`;
+          textEl.style.letterSpacing = '0.2px';
+          textEl.style.fontWeight = '700'; // Bold and professional
+          textEl.style.fill = '#000000'; // Pitch black for maximum contrast
           textEl.style.pointerEvents = 'none';
-          textEl.style.textShadow = '0 1px 3px rgba(255,255,255,0.9), 0 0 2px rgba(255,255,255,0.9)';
+
           textEl.textContent = name;
 
           appendedSvg.appendChild(textEl);
@@ -612,7 +645,7 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
       if (cleanupRef.current) cleanupRef.current();
       abortController.abort();
     };
-  }, [loadedStates]); // Re-render & bind listeners when loadedStates changes to reflect live statistics!
+  }, [loadedStates, summary]); // Re-render & bind listeners when loadedStates changes to reflect live statistics!
 
   // Re-highlight the selected state on state selection change
   useEffect(() => {
@@ -630,18 +663,7 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
       }
 
       const stateId = SVG_TO_STATE[svgPathId];
-      let totalComplaints = 0;
-      
-      if (loadedStates.has(stateId)) {
-        const districts = loadedStates.get(stateId);
-        districts.forEach(d => {
-          totalComplaints += (d.complaintsMajor || 0) + (d.complaintsMinor || 0);
-        });
-      } else if (summary && summary[stateId]) {
-        totalComplaints = summary[stateId].totalComplaints || 0;
-      }
-
-      const baseColor = SOUTH_STATE_COLORS[svgPathId] || '#cbd5e1';
+      const baseColor = resolveStateColor(svgPathId);
       if (selectedState === stateId) {
         path.style.strokeWidth = '3px';
         path.style.stroke = '#ffffff';
@@ -665,36 +687,13 @@ export default function IndiaMap({ selectedState, onStateClick, loadedStates }) 
           <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#1e293b', fontFamily: "'Inter', sans-serif" }}>
             India Map Overview
           </h3>
-          <div style={{
-            background: 'rgba(255,255,255,0.92)',
-            padding: '6px 12px',
-            borderRadius: '8px',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(226,232,240,0.8)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-          }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', fontWeight: 700, color: '#475569' }}>
-              <span style={{ background: '#d32f2f', width: '8px', height: '8px', borderRadius: '50%', display: 'inline-block' }} />
-              11 High
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', fontWeight: 700, color: '#475569' }}>
-              <span style={{ background: '#e5a93c', width: '8px', height: '8px', borderRadius: '50%', display: 'inline-block' }} />
-              11 Med
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', fontWeight: 700, color: '#475569' }}>
-              <span style={{ background: '#3182bd', width: '8px', height: '8px', borderRadius: '50%', display: 'inline-block' }} />
-              15 Low
-            </span>
-          </div>
+
         </div>
 
-        {/* Bottom hint */}
+        {/* Bottom hint
         <div className="india-map-hint" style={{ position: 'absolute', bottom: '14px', left: '14px', zIndex: 10, fontSize: '11px', color: '#64748b', background: 'rgba(255,255,255,0.82)', padding: '4px 10px', borderRadius: '6px', pointerEvents: 'none' }}>
           Click an active state to drill down ↓
-        </div>
+        </div> */}
 
         {loading && (
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.8)', zIndex: 5, gap: '12px' }}>
